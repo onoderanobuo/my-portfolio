@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>着付け おのでら | 上井草・練馬区のプライベート着付けサロン</title>
+    <meta name="description" content="西武新宿線（井草、上井草、上石神井）、練馬区近辺の着付け教室・出張着付け「着付け おのでら」。七五三、振袖、留袖など承ります。早朝対応可。">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&family=Shippori+Mincho:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            /* 配色パレット */
+            --primary-color: #bd4853; /* 落ち着いた赤・小豆色 */
+            --bg-color: #fdfcf8;      /* 生成り色 */
+            --panel-bg: #ffffff;      /* パネル背景 */
+            --text-main: #3d302a;     /* 焦げ茶色 */
+            --text-sub: #756a64;      /* 薄茶色 */
+            --border-color: #e8e2d2;
+            --line-green: #06C755;    /* LINEカラー */
+        }
+
+        /* リセット & ベーススタイル */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 2.0;
+            letter-spacing: 0.08em;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Shippori Mincho', serif;
+            font-weight: 500;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: opacity 0.3s;
+        }
+        a:hover {
+            opacity: 0.8;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            vertical-align: bottom;
+        }
+
+        /* レイアウトユーティリティ */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section {
+            padding: 100px 0;
+        }
+        
+        /* テキストユーティリティ */
+        .text-center { text-align: center; }
+        .text-justify { text-align: justify; }
+        
+        /* ヘッダー */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(253, 252, 248, 0.95);
+            backdrop-filter: blur(5px);
+            z-index: 100;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            height: 70px;
+            transition: 0.3s;
+        }
+
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 100%;
+        }
+
+        .logo {
+            font-family: 'Shippori Mincho', serif;
+            font-size: 1.3rem;
+            color: var(--text-main);
+            font-weight: 600;
+            letter-spacing: 0.1em;
+        }
+
+        .nav-list {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-item a {
+            font-size: 0.9rem;
+            color: var(--text-main);
+            position: relative;
+            font-family: 'Shippori Mincho', serif;
+        }
+        .nav-item a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background-color: var(--primary-color);
+            transition: width 0.3s;
+        }
+        .nav-item a:hover::after {
+            width: 100%;
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            z-index: 101;
+        }
+        .hamburger span {
+            display: block;
+            width: 25px;
+            height: 1px;
+            background-color: var(--text-main);
+            margin: 6px 0;
+            transition: 0.3s;
+        }
+
+        /* ① メインビジュアル（ヒーローエリア） */
+        .hero {
+            position: relative;
+            height: 100vh;
+            width: 100%;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* 振袖女性の後ろ姿・逆光・公園のイメージ */
+            background-image: url('https://images.unsplash.com/photo-1596238612140-57579c8ee301?q=80&w=2670&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center 30%; /* 顔が見えすぎないよう調整 */
+            z-index: -1;
+        }
+        
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(61, 48, 42, 0.15); /* 写真の雰囲気を活かすため薄い暗さをプラス */
+            z-index: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            color: #fff;
+            padding: 0 20px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        /* 縦書きキャッチコピーの演出 */
+        .hero-copy {
+            writing-mode: vertical-rl;
+            text-orientation: upright;
+            font-family: 'Shippori Mincho', serif;
+            display: inline-block;
+            margin: 0 20px;
+            font-size: 2.2rem;
+            letter-spacing: 0.3em;
+            font-weight: 500;
+            height: 60vh; /* 高さ確保 */
+            text-align: left;
+            border-left: 1px solid rgba(255,255,255,0.6); /* 罫線演出 */
+            padding-left: 20px;
+        }
+        
+        .hero-sub-copy {
+            writing-mode: vertical-rl;
+            text-orientation: upright;
+            font-family: 'Shippori Mincho', serif;
+            display: inline-block;
+            margin: 0 10px;
+            font-size: 1.2rem;
+            letter-spacing: 0.3em;
+            height: 40vh;
+            opacity: 0.9;
+        }
+
+        /* 導入文（リード） */
+        .lead-section {
+            padding: 80px 0;
+            background-color: var(--bg-color);
+            text-align: center;
+        }
+        .lead-text {
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 1.05rem;
+            line-height: 2.2;
+        }
+        .lead-heading {
+            font-size: 1.4rem;
+            color: var(--primary-color);
+            margin-bottom: 30px;
+            font-family: 'Shippori Mincho', serif;
+        }
+
+        /* セクション共通 */
+        .section-title {
+            text-align: center;
+            margin-bottom: 70px;
+        }
+        .section-title h2 {
+            font-size: 2.0rem;
+            margin-bottom: 15px;
+            color: var(--text-main);
+            letter-spacing: 0.1em;
+        }
+        .section-title span {
+            display: block;
+            font-size: 0.8rem;
+            color: var(--primary-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+        }
+
+        /* ② コンセプトページ (Concept) */
+        .concept-item {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            margin-bottom: 80px;
+        }
+        .concept-item:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+        .concept-text {
+            flex: 1;
+        }
+        .concept-text h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--text-main);
+            border-bottom: 2px solid var(--primary-color);
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+        .concept-text p {
+            font-size: 0.95rem;
+            color: var(--text-sub);
+            text-align: justify;
+        }
+        .concept-image {
+            flex: 1;
+            position: relative;
+        }
+        .concept-image img {
+            border-radius: 4px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+        }
+
+        /* ③ メニュー・料金表 (Menu & Price) */
+        .menu-wrapper {
+            background-color: #fff;
+            padding: 50px;
+            border-radius: 4px;
+            border: 1px solid var(--border-color);
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .menu-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 40px;
+        }
+        .menu-table th, .menu-table td {
+            padding: 20px 15px;
+            border-bottom: 1px solid #eee;
+            text-align: left;
+        }
+        .menu-table th {
+            font-family: 'Shippori Mincho', serif;
+            font-weight: 600;
+            width: 30%;
+            color: var(--text-main);
+        }
+        .menu-table td.price {
+            font-family: 'Shippori Mincho', serif;
+            font-size: 1.2rem;
+            color: var(--text-main);
+            font-weight: 500;
+            width: 20%;
+            white-space: nowrap;
+        }
+        .menu-table td.desc {
+            font-size: 0.9rem;
+            color: var(--text-sub);
+        }
+
+        .option-box {
+            background-color: #fcfaf5;
+            padding: 20px;
+            border-radius: 4px;
+            margin-top: 30px;
+        }
+        .option-title {
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+        .option-list li {
+            margin-bottom: 8px;
+            list-style: none;
+            padding-left: 1.5em;
+            position: relative;
+        }
+        .option-list li::before {
+            content: '●';
+            color: var(--primary-color);
+            font-size: 0.6em;
+            position: absolute;
+            left: 0;
+            top: 7px;
+        }
+
+        .obi-gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 40px;
+        }
+        .obi-img {
+            height: 200px;
+            width: 100%;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+
+        /* ④ プロフィール (Profile) */
+        .profile-container {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+            background-color: #fff;
+            padding: 60px;
+            border: 1px solid var(--border-color);
+        }
+        .profile-image {
+            flex: 0 0 300px;
+            position: relative;
+        }
+        .profile-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 50% 50% 4px 4px; /* 少し和風なアール */
+            box-shadow: 10px 10px 0 var(--border-color);
+        }
+        .profile-text h3 {
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            line-height: 1.4;
+        }
+        .profile-text p {
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        /* ⑤ ギャラリー (Gallery) */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 4px;
+            height: 280px;
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+        
+        /* ⑥ アクセス・お問い合わせ (Access & Contact) */
+        .access-contact-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+        }
+        .map-box {
+            flex: 1;
+            min-width: 300px;
+            height: 400px;
+            background: #ddd;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        .contact-box {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        /* LINEボタン - 最強のCVツール */
+        .line-btn-large {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--line-green);
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.2rem;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(6, 199, 85, 0.3);
+            transition: transform 0.2s, box-shadow 0.2s;
+            width: 100%;
+            margin-bottom: 30px;
+        }
+        .line-btn-large i {
+            font-size: 1.8rem;
+            margin-right: 15px;
+        }
+        .line-btn-large:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(6, 199, 85, 0.4);
+            opacity: 1;
+        }
+
+        /* FAQ */
+        .faq-list dl {
+            margin-bottom: 15px;
+            border-bottom: 1px dotted #ccc;
+            padding-bottom: 15px;
+        }
+        .faq-list dt {
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+        .faq-list dt::before { content: 'Q. '; }
+        .faq-list dd::before { content: 'A. '; font-weight: bold; }
+
+        /* Footer */
+        .footer {
+            background-color: #3d302a;
+            padding: 40px 0;
+            text-align: center;
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.7);
+        }
+
+        /* Animation */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .fade-in-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* レスポンシブ調整 */
+        @media (max-width: 768px) {
+            .hero-copy { font-size: 1.8rem; height: 50vh; }
+            .hero-sub-copy { font-size: 1.0rem; height: 30vh; }
+            
+            .concept-item, .concept-item:nth-child(even), .profile-container {
+                flex-direction: column;
+                gap: 30px;
+                padding: 30px 20px;
+            }
+            .profile-image { flex: auto; width: 100%; max-width: 300px; margin: 0 auto; }
+            
+            .menu-wrapper { padding: 20px; }
+            .menu-table th, .menu-table td, .menu-table td.price {
+                display: block;
+                width: 100%;
+                padding: 5px 0;
+                border: none;
+            }
+            .menu-table tr {
+                border-bottom: 1px solid #eee;
+                display: block;
+                padding: 15px 0;
+            }
+            .obi-gallery { grid-template-columns: repeat(2, 1fr); }
+            
+            .nav {
+                position: fixed; top: 0; right: -100%; width: 85%; height: 100vh;
+                background-color: #fff; padding-top: 80px; transition: 0.4s;
+                box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+            }
+            .nav.active { right: 0; }
+            .nav-list { flex-direction: column; align-items: center; gap: 30px; }
+            .hamburger { display: block; }
+            .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+            .hamburger.active span:nth-child(2) { opacity: 0; }
+            .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -6px); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ヘッダー -->
+    <header class="header">
+        <div class="container header-inner">
+            <div class="logo">
+                <a href="#">着付け おのでら</a>
+            </div>
+            <nav class="nav" id="nav">
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="#concept" onclick="toggleMenu()">選ばれる理由</a></li>
+                    <li class="nav-item"><a href="#menu" onclick="toggleMenu()">料金</a></li>
+                    <li class="nav-item"><a href="#profile" onclick="toggleMenu()">着付け師</a></li>
+                    <li class="nav-item"><a href="#voice" onclick="toggleMenu()">お客様の声</a></li>
+                    <li class="nav-item"><a href="#access" onclick="toggleMenu()">アクセス</a></li>
+                </ul>
+            </nav>
+            <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- ① トップページ (HOME) -->
+    <section class="hero" id="top">
+        <div class="hero-bg"></div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <!-- 縦書きキャッチコピー -->
+            <div class="hero-copy fade-in-up">その一瞬を、<br>一生の宝物に。</div>
+            <div class="hero-sub-copy fade-in-up" style="transition-delay: 0.3s;">上井草で叶える、<br>深呼吸できる着付け。</div>
+        </div>
+    </section>
+
+    <!-- 導入文（リード） -->
+    <section class="lead-section fade-in-up">
+        <div class="container">
+            <h2 class="lead-heading">着物は「苦しいもの」だと思っていませんか？</h2>
+            <div class="lead-text">
+                <p>「きつけ おのでら」は、上井草の静かな住宅街にあるプライベートサロンです。<br>
+                私たちが大切にしているのは、紐一本の締め加減にまでこだわった「楽な着付け」。<br>
+                お祝いの席のご馳走も、大切な人とのおしゃべりも、心から楽しんでいただきたいから。<br>
+                あなたのハレの日が、笑顔で溢れる一日になりますように。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ② コンセプトページ (Concept) -->
+    <section class="section" id="concept">
+        <div class="container">
+            <div class="section-title fade-in-up">
+                <h2>着物は、もっと自由で、もっと優しい。</h2>
+                <span>Our Concept</span>
+            </div>
+            
+            <!-- Point 1 -->
+            <div class="concept-item fade-in-up">
+                <div class="concept-text">
+                    <h3>1. 「苦しくない」魔法のような技術</h3>
+                    <p>多くの美容室では「崩れないように」と強く締めがちですが、当サロンでは骨格に合わせた補正と、呼吸を妨げない紐使いを行います。「着物を着ていることを忘れるほど楽だった」「コース料理を全部食べられた」と、驚きの声を多数いただいています。</p>
+                </div>
+                <div class="concept-image">
+                    <!-- 着付け師の手元のイメージ（帯揚げなど） -->
+                    <img src="https://images.unsplash.com/photo-1558244402-286dd748c593?q=80&w=2575&auto=format&fit=crop" alt="丁寧な着付けの手元">
+                </div>
+            </div>
+
+            <!-- Point 2 -->
+            <div class="concept-item fade-in-up">
+                <div class="concept-text">
+                    <h3>2. あなただけのプライベート空間</h3>
+                    <p>成人式や七五三の朝、美容室は戦場のような慌ただしさです。ここでは、他のお客様はいません。静かな和の空間で、ゆったりとお支度を整えていただけます。HSP気質の方や、人見知りのあるお子様も安心してお越しください。</p>
+                </div>
+                <div class="concept-image">
+                    <!-- サロン内観（和室）のイメージ -->
+                    <img src="https://plus.unsplash.com/premium_photo-1661884238072-9657095a538d?q=80&w=2626&auto=format&fit=crop" alt="静かな和室サロン">
+                </div>
+            </div>
+
+            <!-- Point 3 -->
+            <div class="concept-item fade-in-up">
+                <div class="concept-text">
+                    <h3>3. 早朝5時からの対応も、喜んで</h3>
+                    <p>早朝のお支度もご相談ください。上井草駅近辺はもちろん、練馬・杉並エリアの皆様の「困った」に寄り添います。早朝の澄んだ空気の中、新しい一日の始まりをサポートいたします。</p>
+                </div>
+                <div class="concept-image">
+                    <!-- 朝の光や時計などのイメージ -->
+                    <img src="https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?q=80&w=2670&auto=format&fit=crop" alt="早朝の清々しい光">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ③ メニュー・料金表 (Menu & Price) -->
+    <section class="section" id="menu" style="background-color: #fff;">
+        <div class="container">
+            <div class="section-title fade-in-up">
+                <h2>メニュー・料金</h2>
+                <span>Menu & Price</span>
+            </div>
+            
+            <div class="menu-wrapper fade-in-up">
+                <p style="text-align: right; margin-bottom: 20px; font-size: 0.9rem;">※価格はすべて税込表示です</p>
+                
+                <table class="menu-table">
+                    <tbody>
+                        <tr>
+                            <th>振袖</th>
+                            <td class="price">8,000円</td>
+                            <td class="desc">成人式、結婚式参列など。華やかな帯結びもお任せください。</td>
+                        </tr>
+                        <tr>
+                            <th>留袖</th>
+                            <td class="price">7,000円</td>
+                            <td class="desc">黒留袖、色留袖。格式高い場にふさわしい装いを。</td>
+                        </tr>
+                        <tr>
+                            <th>訪問着・色無地</th>
+                            <td class="price">6,000円</td>
+                            <td class="desc">入学式、卒業式、お宮参り、お茶会などに。</td>
+                        </tr>
+                        <tr>
+                            <th>袴（卒業式）</th>
+                            <td class="price">5,000円</td>
+                            <td class="desc">卒業式に。ブーツ・草履ともに対応可能です。</td>
+                        </tr>
+                        <tr>
+                            <th>七五三（7歳）</th>
+                            <td class="price">6,000円</td>
+                            <td class="desc">作り帯・手結び帯、どちらも対応いたします。</td>
+                        </tr>
+                        <tr>
+                            <th>七五三（5歳/3歳）</th>
+                            <td class="price">5,000円 / 3,000円</td>
+                            <td class="desc">5歳は袴、3歳は被布など。お子様のペースに合わせて。</td>
+                        </tr>
+                        <tr>
+                            <th>浴衣</th>
+                            <td class="price">3,000円</td>
+                            <td class="desc">花火大会、夏祭りに。アレンジ結びも承ります。</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="option-box">
+                    <p class="option-title">オプション</p>
+                    <ul class="option-list">
+                        <li>早朝料金（6時台以前）: +1,000円</li>
+                        <li>出張着付け（練馬・杉並区内）: +1,000円〜 + 交通費（実費）</li>
+                    </ul>
+                </div>
+
+                <!-- 帯結びバリエーション -->
+                <div class="obi-gallery">
+                    <img src="https://images.unsplash.com/photo-1522855523439-d049619149d8?q=80&w=2670&auto=format&fit=crop" class="obi-img" alt="帯結び例1">
+                    <img src="https://images.unsplash.com/photo-1582236531952-45e317c8008a?q=80&w=2576&auto=format&fit=crop" class="obi-img" alt="帯結び例2">
+                    <img src="https://images.unsplash.com/photo-1518146743953-625d30df7918?q=80&w=2574&auto=format&fit=crop" class="obi-img" alt="帯結び例3">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ④ プロフィール (Profile) -->
+    <section class="section" id="profile">
+        <div class="container">
+            <div class="section-title fade-in-up">
+                <h2>着付け師のご紹介</h2>
+                <span>Profile</span>
+            </div>
+            
+            <div class="profile-container fade-in-up">
+                <div class="profile-image">
+                    <!-- プロフィール写真：優しそうな雰囲気、斜め45度 -->
+                    <img src="https://images.unsplash.com/photo-1601625477833-255d65427845?q=80&w=2574&auto=format&fit=crop" alt="着付け師 小野寺">
+                </div>
+                <div class="profile-text">
+                    <h3>「着物って、こんなに楽だったんですね」<br>その一言が、私の原動力です。</h3>
+                    <p>初めまして、着付け師の小野寺です。</p>
+                    <p>かつて私自身、成人式で苦しい思いをし、早く脱ぎたいとばかり考えていた経験があります。「本来、日本人の衣服である着物が、苦しいはずがない」。そう思い立ち、着付けの技術を学び直してたどり着いたのが、今の「身体に寄り添う着付け」です。</p>
+                    <p>記念写真は、一瞬で撮れます。でも、記憶は一生残ります。「あの日、着物を着てよかったね」と数年後に見返した写真とともに笑い合えるよう、黒子として精一杯のお手伝いをさせていただきます。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ⑤ ギャラリー・お客様の声 (Voice & Gallery) -->
+    <section class="section" id="voice" style="background-color: #fff;">
+        <div class="container">
+            <div class="section-title fade-in-up">
+                <h2>ギャラリー</h2>
+                <span>Gallery</span>
+            </div>
+            
+            <div class="gallery-grid fade-in-up">
+                <!-- 七五三：神社の子供 -->
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1542615462-873b75960447?q=80&w=2670&auto=format&fit=crop" alt="七五三の風景">
+                </div>
+                <!-- 成人式：振袖女性 -->
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1582126892909-66c302927944?q=80&w=2574&auto=format&fit=crop" alt="成人式の笑顔">
+                </div>
+                <!-- ディテール：髪飾り -->
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1558244673-c15c0e189c47?q=80&w=2670&auto=format&fit=crop" alt="髪飾りや小物のディテール">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ⑥ アクセス・お問い合わせ (Access & Contact) -->
+    <section class="section" id="access">
+        <div class="container">
+            <div class="section-title fade-in-up">
+                <h2>アクセス・ご予約</h2>
+                <span>Access & Contact</span>
+            </div>
+            
+            <div class="access-contact-container fade-in-up">
+                <div class="contact-box">
+                    <a href="#" class="line-btn-large">
+                        <i class="fab fa-line"></i> LINEで予約・相談する<br>
+                        <span style="font-size:0.8rem; font-weight:normal; margin-left:10px;">(24時間受付)</span>
+                    </a>
+
+                    <div style="background:#fff; padding:20px; border-radius:4px; margin-bottom:20px; border:1px solid #ddd;">
+                        <h4 style="margin-bottom:15px; color:var(--text-main);">よくある質問</h4>
+                        <div class="faq-list">
+                            <dl>
+                                <dt>着物のレンタルはありますか？</dt>
+                                <dd>提携店をご紹介可能です。お気軽にご相談ください。</dd>
+                            </dl>
+                            <dl>
+                                <dt>準備するものがわかりません。</dt>
+                                <dd>事前にLINEで持ち物リストをお送りし、ビデオ通話での確認も可能です。</dd>
+                            </dl>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="map-box">
+                    <!-- Google Map: 上井草駅周辺 -->
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3238.995955684784!2d139.59972237629633!3d35.72629997257279!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6018ee6a76208697%3A0x673c68386348455e!2z5LiK5LqV6I2J6aeF!5e0!3m2!1sja!2sjp!4v1709400000000!5m2!1sja!2sjp" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Kitsuke Onodera. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // ハンバーガーメニューの開閉
+        function toggleMenu() {
+            const nav = document.getElementById('nav');
+            const hamburger = document.getElementById('hamburger');
+            nav.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        }
+
+        // スクロール時のフェードインアニメーション
+        document.addEventListener('DOMContentLoaded', function() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.fade-in-up').forEach(el => observer.observe(el));
+        });
+    </script>
+</body>
+</html>
